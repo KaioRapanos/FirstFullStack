@@ -7,22 +7,31 @@ import java.util.Arrays;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.studant.first.domain.All;
-import com.studant.first.repositories.AllRepository;
+import com.studant.first.domain.Todo;
+import com.studant.first.repositories.TodoRepository;
+
+import jakarta.transaction.Transactional;
 
 @Service
 public class DBService {
 
 	@Autowired
-	private AllRepository allRepository;
+	private TodoRepository todoRepository;
 
+	@Transactional
 	public void instantiateDatabase() {
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
 
-		All t1 = new All(null, "To study", "Study spring boot and Angular",
-				LocalDateTime.parse("25/03/2022 10:40", dtf), false);
+		Todo t1 = new Todo(null, "To study", "Study spring boot and Angular",
+				LocalDateTime.parse("25/03/2024", dtf), false);
+		Todo t2 = new Todo(null, "To read", "Read personal development book",
+				LocalDateTime.parse("22/03/2024", dtf), true);
+		Todo t3 = new Todo(null, "Exercises", "Practice physical exercises",
+				LocalDateTime.parse("21/03/2024", dtf), false);
+		Todo t4 = new Todo(null, "Meditate", "Meditate for 30 minutes in the morning",
+				LocalDateTime.parse("27/03/2024", dtf), true);
 
-		allRepository.saveAll(Arrays.asList(t1));
+		todoRepository.saveAll(Arrays.asList(t1, t2, t3, t4));
 	}
 
 }

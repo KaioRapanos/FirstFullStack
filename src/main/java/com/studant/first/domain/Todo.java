@@ -4,13 +4,15 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity(name = "FirstProject")
-public class All implements Serializable{
+public class Todo implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -18,14 +20,16 @@ public class All implements Serializable{
 	private Long id;
 	private String title;
 	private String description;
+	
+	@JsonFormat(pattern = "dd/MM/yyyy")
 	private LocalDateTime endDate;
 	private Boolean finished = false;
 
-	public All() {
+	public Todo() {
 		super();
 	}
 
-	public All(Long id, String title, String description, LocalDateTime endDate, Boolean finished) {
+	public Todo(Long id, String title, String description, LocalDateTime endDate, Boolean finished) {
 		super();
 		this.id = id;
 		this.title = title;
@@ -87,7 +91,7 @@ public class All implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		All other = (All) obj;
+		Todo other = (Todo) obj;
 		return Objects.equals(id, other.id);
 	}
 
