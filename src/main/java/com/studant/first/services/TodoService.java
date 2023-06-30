@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.studant.first.domain.Todo;
 import com.studant.first.repositories.TodoRepository;
+import com.studant.first.services.exceptions.ObjectNotFoundException;
 
 @Service
 public class TodoService {
@@ -17,7 +18,8 @@ public class TodoService {
 
 	public Todo findById(Integer id) {
 		Optional<Todo> obj = repository.findById(id);
-		return obj.orElse(null);
+		return obj.orElseThrow(( ) -> new ObjectNotFoundException("Object not found id: "
+				+ id + " type: " + Todo.class.getName()));
 	}
 
 	public List<Todo> findAllOpen() {
