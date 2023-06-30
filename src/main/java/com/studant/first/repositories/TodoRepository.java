@@ -9,9 +9,12 @@ import org.springframework.stereotype.Repository;
 import com.studant.first.domain.Todo;
 
 @Repository
-public interface TodoRepository extends JpaRepository<Todo, Long> {
+public interface TodoRepository extends JpaRepository<Todo, Integer> {
 	
-	@Query("SELECT obj FROM Todo obj WHERE obj.finished = false ORDER BY obj.endDate ASC")
+	@Query("SELECT obj FROM Todo obj WHERE obj.finished = false ORDER BY obj.endDate")
 	List<Todo> findAllOpen();
+
+	@Query("SELECT obj FROM Todo obj WHERE obj.finished = true ORDER BY obj.endDate")
+	List<Todo> findAllClose();
 
 }

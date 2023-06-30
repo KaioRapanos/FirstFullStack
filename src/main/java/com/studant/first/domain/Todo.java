@@ -17,7 +17,7 @@ public class Todo implements Serializable{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private Integer id;
 	private String title;
 	private String description;
 	
@@ -29,7 +29,7 @@ public class Todo implements Serializable{
 		super();
 	}
 
-	public Todo(Long id, String title, String description, LocalDateTime endDate, Boolean finished) {
+	public Todo(Integer id, String title, String description, LocalDateTime endDate, Boolean finished) {
 		super();
 		this.id = id;
 		this.title = title;
@@ -38,11 +38,11 @@ public class Todo implements Serializable{
 		this.finished = finished;
 	}
 
-	public Long getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

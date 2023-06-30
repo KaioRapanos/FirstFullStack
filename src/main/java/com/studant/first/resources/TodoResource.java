@@ -20,7 +20,7 @@ public class TodoResource {
 	private TodoService service;
 	
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<Todo> findById(@PathVariable Long id) {
+	public ResponseEntity<Todo> findById(@PathVariable Integer id) {
 		Todo obj = service.findById(id);
 		return ResponseEntity.ok().body(obj);
 	}
@@ -31,4 +31,15 @@ public class TodoResource {
 		return ResponseEntity.ok().body(list);
 	}
 
+	@GetMapping(value ="Close")
+	public ResponseEntity<List<Todo>> listClose(){
+		List<Todo> list = service.findAllClose();
+		return ResponseEntity.ok().body(list);
+	}
+	
+	@GetMapping
+	public ResponseEntity<List<Todo>> listAll(){
+		List<Todo> list = service.findAll();
+		return ResponseEntity.ok().body(list);
+	}
 }
